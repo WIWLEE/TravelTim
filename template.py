@@ -16,6 +16,7 @@ def text_response(text):
 
 def card(title_list, image_list, date_list, addr_list):
     
+    print("card")
     items = []
     for idx in range(len(title_list)):
         title = title_list[idx]
@@ -65,6 +66,60 @@ def card(title_list, image_list, date_list, addr_list):
             ]
         }
     }
+
+def card2(main_title, title_list, image_list, tel_list, addr_list):
+    
+    print("card")
+    items = []
+    for idx in range(len(title_list)):
+        title = title_list[idx]
+        tel = tel_list[idx]
+        location = addr_list[idx]
+        item = {
+            "title": title,
+            "description": f"tel : {tel}",
+            #"description2": f"address : {location}",
+            "imageUrl": image_list[idx] if len(image_list) != 0 else tempimage,
+            "link" : {
+                "web" : "https://map.naver.com/search?query={}".format(location)
+            }
+        }
+        items.append(item)
+
+    # # 좌표
+    # latitude = 37.5665
+    # longitude = 126.9780
+
+    # # 좌표를 이용하여 카카오맵 URL 가져오기
+    # map_url = get_map_url(latitude, longitude)
+    # print("카카오맵 URL:", map_url)
+
+    return {
+        "version": "2.0",
+        "template": {
+            "outputs": [
+                {
+                    "simpleText" : {
+                        "text" :"Here's the list for your request."
+                    }
+                },
+                {
+                    "listCard": {
+                        "header": {
+                            "title": main_title,
+                        },
+                        "items": items,
+                    },
+                },
+                {
+                    "simpleText" : {
+                        "text" : "If you want to know more informations, please let me know."
+                    }
+                }
+            ]
+        }
+    }
+
 
 def get_map_url(latitude, longitude):
     # 카카오맵 API 호출을 위한 URL

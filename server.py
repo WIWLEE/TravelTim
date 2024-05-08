@@ -5,6 +5,7 @@ import time
 from template import get_map_url
 from PyKakao import Local
 from festival import festival
+from area_tourist_spot import area_tourist_spot
 from template import card
 from template import text_response
 
@@ -41,6 +42,11 @@ def message():
 @app.route('/festival', methods=['POST'])
 def handle_festival():
     return festival()
+
+#area_tourist_spot query
+@app.route('/areatouristspot', methods=['POST'])
+def handle_areatouristspot():
+    return area_tourist_spot()
 
 
 if __name__ == "__main__":
