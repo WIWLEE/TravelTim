@@ -46,5 +46,5 @@ def festival():
         data_send = get_kth_festival_page(0)
         return data_send
     else:
-        data_send = text_response("이해할 수 없는 메시지입니다")
+        data_send = text_response("Sorry, I don't know what you mean")
         return jsonify(data_send)

@@ -6,6 +6,10 @@ from template import get_map_url
 from PyKakao import Local
 from festival import festival
 from area_tourist_spot import area_tourist_spot
+from area_festival import area_festival
+from area_accommodate import area_accommodate
+from area_restaurant import area_restaurant
+from area_shopping import area_shopping
 from template import card
 from template import text_response
 
@@ -48,6 +52,31 @@ def handle_festival():
 def handle_areatouristspot():
     return area_tourist_spot()
 
+#area_festival_query
+@app.route('/areafestival', methods=['POST'])
+def handle_areafestival():
+    return area_festival()
+
+
+#area_accommodate_query
+@app.route('/areaaccommodate', methods=['POST'])
+def handle_areaaccommodatel():
+    return area_accommodate()
+
+#area_restaurant_query
+@app.route('/arearestaurant', methods=['POST'])
+def handle_arearestaurant():
+    return area_restaurant()
+
+#area_shopping_query
+@app.route('/areashopping', methods=['POST'])
+def handle_arearshopping():
+    return area_shopping()
+
+#area_introduce_query
+@app.route('/areaintroduce', methods=['POST'])
+def handle_arearintroduce():
+    return area_introduce()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

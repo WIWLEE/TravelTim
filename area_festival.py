@@ -5,7 +5,7 @@ import time
 from template import card,card2
 from template import text_response
 
-def get_kth_area_tourist_spot_page(k, keyword, typeId) :
+def get_kth_area_festival_page(k, keyword, typeId) :
     now = time.strftime("%Y%m%d")
     print("현재 날짜 ", now)
 
@@ -29,10 +29,13 @@ def get_kth_area_tourist_spot_page(k, keyword, typeId) :
         for idx, item in enumerate(dic['response']['body']['items']['item']):
             title_list.append(item['title'])
             image_list.append(item['firstimage'])
-            tel_list.append(item['tel'])
+            if str(type(item['tel'])) == "<class 'NoneType'>" :
+                tel_list.append(item['tel'])
+            else :
+                tel_list.append(item['tel'].split('<br>')[0])
             addr_list.append(item['addr1'])
             print(idx)
-        main_title = "List of {} tourist spots".format(keyword)
+        main_title = "List of {} festival".format(keyword)
         data_send = card2(main_title, title_list[5*k:5*k+5], image_list[5*k:5*k+5], tel_list[5*k:5*k+5], addr_list[5*k:5*k+5])
         print(data_send)
     else :
@@ -40,20 +43,22 @@ def get_kth_area_tourist_spot_page(k, keyword, typeId) :
 
     return data_send
 
-def area_tourist_spot():
+
+def area_festival():
     content = request.get_json()
     content = content['userRequest']['utterance']
 
-    keyword_list = ["seoul", "busan", "gyeongsangnamdo", "gyeongsangbukdo", "chungnam", "chungbuk", "deajeon", "daegu", "pohang", "yeosu", "jeju", "jeonju", "gwangju", "suwon", "incheon"]
-    keyword_list += ["Seoul", "Busan", "Gyeongsangnamdo", "Gyeongsangbukdo", "Chungnam", "Chungbuk", "Deajeon", "Daegu", "Pohang", "Yeosu", "Jeju", "Jeonju", "Gwangju", "Suwon", "Incheon"]
-    for idx, keyword in enumerate(keyword_list):
-        print(keyword)
-        if keyword in content and (u"more" in content or u"other" in content):
-            data_send = get_kth_area_tourist_spot_page(1, keyword, 76)
-            return data_send
-        elif keyword in content :
-            data_send = get_kth_area_tourist_spot_page(0, keyword, 76)
-            return data_send
+    keyword_list = ["seoul", "busan", "gyeongsangnamdo", "gyeongsangbukdo", "chungnam", "chungbuk", "daejeon", "daegu", "pohang", "yeosu", "jeju", "jeonju", "gwangju", "suwon", "incheon"]
+    keyword_list += ["Seoul", "Busan", "Gyeongsangnamdo", "Gyeongsangbukdo", "Chungnam", "Chungbuk", "Daejeon", "Daegu", "Pohang", "Yeosu", "Jeju", "Jeonju", "Gwangju", "Suwon", "Incheon"]
+    if 'festival' in content or 'event' in content :
+        for idx, keyword in enumerate(keyword_list):
+            print(keyword)
+            if keyword in content and (u"more" in content or u"other" in content):
+                data_send = get_kth_area_festival_page(1, keyword, 85)
+                return data_send
+            elif keyword in content :
+                data_send = get_kth_area_festival_page(0, keyword, 85)
+                return data_send
     data_send = text_response("Sorry, I don't know what you mean")
     return jsonify(data_send)
            
