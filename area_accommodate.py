@@ -72,6 +72,8 @@ def area_accommodate():
             elif keyword in content :
                 data_send = get_kth_area_accommodate_page(0, keyword, 80)
                 return data_send
+        data_send = text_response("Can you give me more specific regions that you want to know?")
+        return jsonify(data_send)
     data_send = text_response("Sorry, I don't know what you mean")
     return jsonify(data_send)
            

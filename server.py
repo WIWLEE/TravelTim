@@ -4,12 +4,14 @@ import xmltodict
 import time
 from template import get_map_url
 from PyKakao import Local
-from festival import festival
+from global_festival import festival
+from korea_introduce import korea_introduce
 from area_tourist_spot import area_tourist_spot
 from area_festival import area_festival
 from area_accommodate import area_accommodate
 from area_restaurant import area_restaurant
 from area_shopping import area_shopping
+from area_introduce import area_introduce
 from template import card
 from template import text_response
 
@@ -77,6 +79,16 @@ def handle_arearshopping():
 @app.route('/areaintroduce', methods=['POST'])
 def handle_arearintroduce():
     return area_introduce()
+
+#korea_introduce_query
+@app.route('/koreaintroduce', methods=['POST'])
+def handle_koreaintroduce():
+    return korea_introduce()
+
+#global_accommodate_query
+@app.route('/globalaccommodate', methods=['POST'])
+def handle_globalaccommodate():
+    return global_accommodate()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

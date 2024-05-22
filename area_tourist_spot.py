@@ -54,6 +54,6 @@ def area_tourist_spot():
         elif keyword in content :
             data_send = get_kth_area_tourist_spot_page(0, keyword, 76)
             return data_send
-    data_send = text_response("Sorry, I don't know what you mean")
+    data_send = text_response("Can you give me more specific regions that you want to know?")
     return jsonify(data_send)
            
