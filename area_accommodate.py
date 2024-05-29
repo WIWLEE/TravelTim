@@ -48,11 +48,11 @@ def get_kth_area_accommodate_page(k, keyword, typeId) :
             else :
                 tel_list.append(item['tel'].split('<br>')[0])
             addr_list.append(item['addr1'])
-        main_title = "List of {} accommodates".format(keyword)
+        main_title = "List of {} accommodations".format(keyword)
         data_send = card2(main_title, title_list[5*k:5*k+5], image_list[5*k:5*k+5], tel_list[5*k:5*k+5], addr_list[5*k:5*k+5])
         print(data_send)
     else :
-        data_send = text_response("I can't find any accommodate using this keyword area")
+        data_send = text_response("I can't find any accommodations using this keyword area")
 
     return data_send
 
@@ -63,7 +63,7 @@ def area_accommodate():
 
     keyword_list = ["seoul", "busan", "gyeongsangnamdo", "gyeongsangbukdo", "chungnam", "chungbuk", "daejeon", "daegu", "pohang", "yeosu", "jeju", "jeonju", "gwangju", "suwon", "incheon"]
     keyword_list += ["Seoul", "Busan", "Gyeongsangnamdo", "Gyeongsangbukdo", "Chungnam", "Chungbuk", "Daejeon", "Daegu", "Pohang", "Yeosu", "Jeju", "Jeonju", "Gwangju", "Suwon", "Incheon"]
-    if 'accommodate' in content or 'event' in content :
+    if 'accommodate' in content or 'accommodation' in content :
         for idx, keyword in enumerate(keyword_list):
             print(keyword)
             if keyword in content and (u"more" in content or u"other" in content):

@@ -12,6 +12,8 @@ from area_accommodate import area_accommodate
 from area_restaurant import area_restaurant
 from area_shopping import area_shopping
 from area_introduce import area_introduce
+from user_manual import user_manual
+from customer_support import customer_support
 from template import card
 from template import text_response
 
@@ -89,6 +91,16 @@ def handle_koreaintroduce():
 @app.route('/globalaccommodate', methods=['POST'])
 def handle_globalaccommodate():
     return global_accommodate()
+
+#user_manual
+@app.route('/usermanual', methods=['POST'])
+def handle_usermanual():
+    return user_manual()
+
+#customer support
+@app.route('/customersupport', methods=['POST'])
+def handle_customersupport():
+    return customer_support()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
